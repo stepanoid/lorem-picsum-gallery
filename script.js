@@ -10,18 +10,17 @@ let add100 = document.querySelector('.add100Btn');
 // download database
 let items = downloadData();
 
-// check for cleared local storage
-// if(!items) {
-//   let emptyArray = [];
-//   uploadData(emptyArray);
-//   items = downloadData();
-// }
+// check for null local storage
+if(!items) {
+  let emptyArray = [];
+  uploadData(emptyArray);
+  items = downloadData();
+}
 
 function initialList() {
-  if(container.innerHTML === '' || !items) {
+  if(container.innerHTML === '') {
     addCard(50);
     console.log('List was Empty!');
-    items = downloadData(); // download again
   }
 }
 
