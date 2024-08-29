@@ -1,6 +1,3 @@
-
-window.onload = function(){
-  
 let container = document.querySelector('.container');
 let addBtn = document.querySelector('.addBtn');
 let removeBtn = document.querySelector('.removeBtn');
@@ -12,18 +9,25 @@ let add100 = document.querySelector('.add100Btn');
 
 // download database
 let items = downloadData();
-
 // check for cleared local storage
 if(!items) {
   let emptyArray = [];
   uploadData(emptyArray);
+  items = downloadData();
 }
 
-// show previous list of cards
-updateList();
+function initialList() {
+  if(container.innerHTML === '') {
+    addCard(50);
+    console.log('List is Empty!');
+  }
+}
 
 // generate initial list of cards
 initialList();
+
+// show previous list of cards
+updateList();
 
 //////////////////////////////
 //////////////////////////////
@@ -138,6 +142,8 @@ function createUploadMenu(parentElement) {
 //////////////////////////////
 
 function updateList() {
+  items = downloadData();
+
   // reset old list
   container.innerHTML = '';
 
@@ -190,17 +196,8 @@ function sortCards() {
   updateList();
 }
 
-function initialList() {
-  if(container.innerHTML === '') {
-    addCard(50);
-    console.log('List is Empty!');
-  }
-}
-
 add100.addEventListener('click', ()=>addCard(100));
 addBtn.addEventListener('click', ()=>addCard(1));
 removeBtn.addEventListener('click', removeCard);
 resetBtn.addEventListener('click', resetCards);
 sortName.addEventListener('click', sortCards);
-
-}
