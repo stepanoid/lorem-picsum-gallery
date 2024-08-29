@@ -142,8 +142,6 @@ function createUploadMenu(parentElement) {
 //////////////////////////////
 
 function updateList() {
-  items = downloadData();
-
   // reset old list
   container.innerHTML = '';
 
