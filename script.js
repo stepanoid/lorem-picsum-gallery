@@ -24,11 +24,11 @@ function initialList() {
   }
 }
 
-// generate initial list of cards
-initialList();
-
 // show previous list of cards
 updateList();
+
+// generate initial list of cards
+initialList();
 
 //////////////////////////////
 //////////////////////////////
