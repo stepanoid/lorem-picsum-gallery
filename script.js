@@ -9,25 +9,26 @@ let add100 = document.querySelector('.add100Btn');
 
 // download database
 let items = downloadData();
+
 // check for cleared local storage
-if(!items) {
-  let emptyArray = [];
-  uploadData(emptyArray);
-  items = downloadData();
-}
+// if(!items) {
+//   let emptyArray = [];
+//   uploadData(emptyArray);
+//   items = downloadData();
+// }
 
 function initialList() {
-  if(container.innerHTML === '') {
+  if(container.innerHTML === '' || !items) {
     addCard(50);
     console.log('List is Empty!');
   }
 }
 
-// show previous list of cards
-updateList();
-
 // generate initial list of cards
 initialList();
+
+// show previous list of cards
+updateList();
 
 //////////////////////////////
 //////////////////////////////
