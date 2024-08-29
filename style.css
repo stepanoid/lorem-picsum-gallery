@@ -79,7 +79,6 @@ button {
   flex-direction: column;
   height: 200px;
   width: 200px;
-  cursor: pointer;
 }
 .card img {
   width: 100%;
@@ -105,7 +104,7 @@ button {
   padding: 10px;
   background-color: #000;
   color: #fff;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   border: 2px solid white;
   position: absolute;
   top: 50%;
@@ -115,7 +114,21 @@ button {
   display: none;
 }
 .card:hover .tooltip {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputsGroup {
+  display: flex;
+  gap: 0.4rem;
+}
+.inputsGroup input {
+  width: 5rem;
+}
+
+.tooltip button {
+  cursor: pointer;
 }
 
 ::selection {
