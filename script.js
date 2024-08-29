@@ -20,7 +20,8 @@ let items = downloadData();
 function initialList() {
   if(container.innerHTML === '' || !items) {
     addCard(50);
-    console.log('List is Empty!');
+    console.log('List was Empty!');
+    items = downloadData(); // download again
   }
 }
 
