@@ -8,16 +8,18 @@ let add100 = document.querySelector('.add100Btn');
 
 // localStorage.clear();
 
+let items;
+
 window.onload = function(){
   // download database
-  let items = downloadData();
+  items = downloadData();
 
   // check for cleared local storage
   if(!items) {
     let emptyArray = [];
     uploadData(emptyArray);
   }
-  
+
   // show previous list of cards
   updateList();
 
