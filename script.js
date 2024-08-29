@@ -84,13 +84,46 @@ function createCard(i) {
   header.setAttribute('class', 'title');
   card.append(header);
 
-  let tooltip = document.createElement('div');
-  tooltip.setAttribute('class', 'tooltip');
-  tooltip.textContent = newImg.src;
-  card.append(tooltip);
+  // card upload menu:
+  createUploadMenu(card);
 
-  card.addEventListener('click', (e)=>copyUrl(e.currentTarget));
   container.append(card);
+}
+
+function createUploadMenu(parentElement) {
+  tooltip = document.createElement('div');
+  tooltip.setAttribute('class', 'tooltip');
+  // --resolution group
+  let inputsGroup = document.createElement('div');
+  inputsGroup.setAttribute('class', 'inputsGroup');
+  // --W
+  let labelW = document.createElement('label');
+  let inputW = document.createElement('input');
+  inputW.setAttribute('type', 'number');
+  inputW.setAttribute('class', 'inputW');
+  labelW.textContent = 'width:';
+  inputW.value = 400;
+  labelW.append(inputW);
+  inputsGroup.append(labelW);
+  // --H
+  let labelH = document.createElement('label');
+  let inputH = document.createElement('input');
+  inputH.setAttribute('type', 'number');
+  inputH.setAttribute('class', 'inputH');
+  labelH.textContent = 'height:';
+  inputH.value = 400;
+  labelH.append(inputH);
+  inputsGroup.append(labelH);
+  //
+  tooltip.append(inputsGroup);
+  // --button
+  uploadBtn = document.createElement('button');
+  uploadBtn.textContent = 'copy image'
+  tooltip.append(uploadBtn);
+
+  parentElement.append(tooltip);
+  // setup
+  uploadBtn.addEventListener('click', (e)=>copyUrl(e.currentTarget));
 }
 
 //////////////////////////////
@@ -111,16 +144,19 @@ function updateList() {
 
 // copy url
 function copyUrl(element) {
-  let imgSrc = element.querySelector('img').src;
-  navigator.clipboard.writeText(imgSrc).then(function() {
-    element.querySelector('.tooltip').textContent = 'URL copied!';
+  let currentCard = element.parentElement.parentElement;
+  let imgSrc = currentCard.querySelector('img').src;
+  let imgSrcUpload = `${imgSrc.slice(0, -3)}${currentCard.querySelector('.inputW').value}/${currentCard.querySelector('.inputH').value}`;
+  navigator.clipboard.writeText(imgSrcUpload).then(function() {
+    currentCard.querySelector('.tooltip').textContent = 'URL copied!';
     console.log('copied!');
   }).catch(function(err) {
     console.error('Could not copy text: ', err);
   });
   // revert tooltip
   setTimeout(() => {
-    element.querySelector('.tooltip').textContent = imgSrc;
+    currentCard.querySelector('.tooltip').remove();
+    createUploadMenu(currentCard);
   }, 1000);
 }
 
