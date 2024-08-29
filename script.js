@@ -1,4 +1,6 @@
 
+window.onload = function(){
+  
 let container = document.querySelector('.container');
 let addBtn = document.querySelector('.addBtn');
 let removeBtn = document.querySelector('.removeBtn');
@@ -8,24 +10,20 @@ let add100 = document.querySelector('.add100Btn');
 
 // localStorage.clear();
 
-let items;
+// download database
+let items = downloadData();
 
-window.onload = function(){
-  // download database
-  items = downloadData();
-
-  // check for cleared local storage
-  if(!items) {
-    let emptyArray = [];
-    uploadData(emptyArray);
-  }
-
-  // show previous list of cards
-  updateList();
-
-  // generate initial list of cards
-  initialList();
+// check for cleared local storage
+if(!items) {
+  let emptyArray = [];
+  uploadData(emptyArray);
 }
+
+// show previous list of cards
+updateList();
+
+// generate initial list of cards
+initialList();
 
 //////////////////////////////
 //////////////////////////////
@@ -204,3 +202,5 @@ addBtn.addEventListener('click', ()=>addCard(1));
 removeBtn.addEventListener('click', removeCard);
 resetBtn.addEventListener('click', resetCards);
 sortName.addEventListener('click', sortCards);
+
+}
