@@ -1,9 +1,9 @@
-let container = document.querySelector('.container');
-let addBtn = document.querySelector('.addBtn');
-let removeBtn = document.querySelector('.removeBtn');
-let resetBtn = document.querySelector('.resetBtn');
-let sortName = document.querySelector('.sortNameBtn');
-let add100 = document.querySelector('.add100Btn');
+const container = document.getElementById('container');
+const addBtn = document.getElementById('addBtn');
+const removeBtn = document.getElementById('removeBtn');
+const resetBtn = document.getElementById('resetBtn');
+const sortName = document.getElementById('sortNameBtn');
+const add100 = document.getElementById('add100Btn');
 
 // download database
 let items = downloadData();
@@ -81,13 +81,13 @@ function sortItems() {
 //////////////////////////////
 //////////////////////////////
 
-function createCard(i) {
+function createCard(item) {
   let card = document.createElement('div');
   card.classList.add('card');
 
   card.innerHTML = `
-    <img src="${items[i].image}" alt="">
-    <div class="title">${items[i].name} ${items[i].code}</div>
+    <img src="${item.image}" alt="">
+    <div class="title">${item.name} ${item.code}</div>
   `;
 
   createUploadMenu(card);
@@ -114,7 +114,7 @@ function createUploadMenu(parentElement) {
   `;
 
   parentElement.append(tooltip);
-  // setup
+  // button event
   parentElement.querySelector('button').addEventListener('click', (e)=>copyUrl(e.currentTarget));
 }
 
@@ -127,7 +127,7 @@ function updateList() {
 
   // create list of cards
   for (let i = 0; i < items.length; i++) {
-    createCard(i);
+    createCard(items[i]);
   }
 }
 
