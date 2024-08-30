@@ -5,8 +5,6 @@ let resetBtn = document.querySelector('.resetBtn');
 let sortName = document.querySelector('.sortNameBtn');
 let add100 = document.querySelector('.add100Btn');
 
-// localStorage.clear();
-
 // download database
 let items = downloadData();
 
@@ -84,18 +82,14 @@ function sortItems() {
 //////////////////////////////
 
 function createCard(i) {
-  // create card
   let card = document.createElement('div');
   card.classList.add('card');
 
   card.innerHTML = `
-    <div class="card">
-      <img src="${items[i].image}" alt="">
-      <div class="title">${items[i].name} ${items[i].code}</div>
-    </div>
+    <img src="${items[i].image}" alt="">
+    <div class="title">${items[i].name} ${items[i].code}</div>
   `;
 
-  // card upload menu:
   createUploadMenu(card);
 
   container.append(card);
@@ -118,8 +112,9 @@ function createUploadMenu(parentElement) {
     </div>
     <button>copy image</button>
   `;
-  
+
   parentElement.append(tooltip);
+  // setup
   parentElement.querySelector('button').addEventListener('click', (e)=>copyUrl(e.currentTarget));
 }
 
@@ -141,7 +136,7 @@ function updateList() {
 
 // copy url
 function copyUrl(element) {
-  let currentCard = element.parentElement.parentElement;
+  let currentCard = element.closest('.card');
   let imgSrc = currentCard.querySelector('img').src;
   let imgSrcUpload = `${imgSrc.slice(0, -3)}${currentCard.querySelector('.inputW').value}/${currentCard.querySelector('.inputH').value}`;
   navigator.clipboard.writeText(imgSrcUpload).then(function() {
