@@ -68,7 +68,7 @@ button {
   cursor: pointer;
 } */
 
-.container {
+#container {
   display: flex;
   flex-wrap: wrap;
 }
